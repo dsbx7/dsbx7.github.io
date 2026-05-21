@@ -13,6 +13,9 @@ function resizeCanvas() {
   ratio = Math.min(window.devicePixelRatio || 1, 2);
   width = canvas.clientWidth;
   height = canvas.clientHeight;
+  if (width === 0 || height === 0) {
+    return;
+  }
   canvas.width = Math.floor(width * ratio);
   canvas.height = Math.floor(height * ratio);
   ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -107,6 +110,10 @@ function drawEvents(time) {
 }
 
 function animate(time) {
+  if (width === 0 || height === 0) {
+    requestAnimationFrame(animate);
+    return;
+  }
   drawGrid(time);
   drawJobs(time);
   drawEvents(time);

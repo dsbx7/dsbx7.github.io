@@ -47,9 +47,11 @@
           <p class="eyebrow">ICML 2026 / Calibrated DFJSP Benchmarks</p>
           <h1 id="hero-title">DynaSchedBench</h1>
           <p class="hero-copy">
-            Calibrated Dynamic Flexible Job Shop Scheduling benchmarks and a
-            diagnostic environment for studying the observability paradox in
-            LLM-based scheduling agents.
+            Calibrated Dynamic Flexible Job Shop Scheduling benchmarks for
+            studying how event design, observability, and agent strategy
+            change scheduling quality. The release packages generation,
+            simulation, evaluation, visualization, and agents under one
+            import: <code>dsbx</code>.
           </p>
           <div class="hero-actions" aria-label="Project links">
             <a class="button button-primary" href="https://github.com/dsbx7/DynaSchedBench">
@@ -62,27 +64,25 @@
               PyPI Package
             </a>
           </div>
-          <dl class="hero-stats" aria-label="Project highlights">
-            <div>
-              <dt>5</dt>
-              <dd>dsbx CLI tools</dd>
-            </div>
-            <div>
-              <dt>SSI</dt>
-              <dd>difficulty model</dd>
-            </div>
-            <div>
-              <dt>1</dt>
-              <dd>unified env API</dd>
-            </div>
-          </dl>
+          <p class="hero-meta" aria-label="Project metadata">
+            <span><strong>Python import</strong> is <code>dsbx</code>,<br /> the single namespace for the release code.</span>
+            <span><strong>Release package</strong> is <code>dsbx</code>,<br /> published on PyPI for direct installation.</span>
+            <span><strong>Documentation</strong> lives at <code>dsbx.readthedocs.io</code><br /> for the full workflow.</span>
+            <span><strong>Project site</strong> is <code>dsbx7.github.io</code><br /> for the public landing page.</span>
+          </p>
         </div>
       </section>
 
       <section class="section intro" id="overview" aria-labelledby="overview-title">
         <div class="section-heading">
           <p class="section-kicker">Why DynaSchedBench</p>
-          <h2 id="overview-title">Calibrated dynamic scheduling experiments that stay reproducible.</h2>
+          <h2 id="overview-title">A release stack for calibrated instances, agent rollouts, and trajectory diagnosis.</h2>
+          <p>
+            DynaSchedBench is designed to be read as a working benchmark, not a
+            pile of scripts: the same release provides the generator, the
+            simulator, the evaluation tools, the visualizers, and the agent
+            interfaces used to compare scheduling policies on matched inputs.
+          </p>
         </div>
         <div class="intro-grid">
           <article>
@@ -91,7 +91,8 @@
             <p>
               Generate DFJSP instances from layered input models with target
               utilization, due-date tightness, variability, disturbance, and
-              event-space calibration.
+              calibrated event streams. The release lets you move from a paper
+              setting to a reproducible artifact without hand-editing inputs.
             </p>
           </article>
           <article>
@@ -100,7 +101,8 @@
             <p>
               Replay arrivals, breakdowns, priority changes, cancellations,
               maintenance, rework, processing-time changes, and route changes
-              through explicit simulator snapshots.
+              through explicit simulator snapshots. Every state transition is
+              visible, so debugging a policy does not depend on guesswork.
             </p>
           </article>
           <article>
@@ -109,7 +111,8 @@
             <p>
               Run heuristics, PDRs, evolutionary search, and LLM schedulers on
               the same environment interface, then compare trajectories with
-              shared metrics and plots.
+              shared metrics and plots. That keeps the benchmark fair even when
+              the agents themselves come from very different design families.
             </p>
           </article>
         </div>
@@ -118,30 +121,32 @@
       <section class="section split" id="benchmark" aria-labelledby="benchmark-title">
         <div class="section-heading">
           <p class="section-kicker">Benchmark Surface</p>
-          <h2 id="benchmark-title">Designed for calibrated shop-floor stress tests.</h2>
+          <h2 id="benchmark-title">Designed to make observability and difficulty measurable.</h2>
           <p>
             DynaSchedBench replaces uncalibrated procedural sampling with
-            event-stream refinement and SSI-based difficulty modeling, so
-            performance changes can be separated from stochastic luck.
+            event-stream refinement and SSI-based difficulty modeling. That
+            means performance changes can be traced to the policy, the
+            observability setting, or the event design instead of stochastic
+            luck.
           </p>
         </div>
         <div class="benchmark-panel">
           <div class="axis-list">
             <div>
               <span>Plant</span>
-              <strong>Machines / groups / routes / job families</strong>
+              <strong>Machines, groups, routes, families, and release pressure</strong>
             </div>
             <div>
               <span>SESC</span>
-              <strong>Event-space refinement / target convergence / runtime efficiency</strong>
+              <strong>Event-space refinement, target convergence, and runtime efficiency</strong>
             </div>
             <div>
               <span>Dynamics</span>
-              <strong>Arrivals / priority / cancellation / maintenance</strong>
+              <strong>Arrivals, priority shifts, cancellations, maintenance, and route changes</strong>
             </div>
             <div>
               <span>LLM Agents</span>
-              <strong>Observability levels / tool use / refinement strategies</strong>
+              <strong>Observability levels, tool use, and prompt refinement strategies</strong>
             </div>
           </div>
           <div class="metric-board" aria-label="Benchmark metric examples">
@@ -169,27 +174,32 @@
         <div class="section-heading">
           <p class="section-kicker">Experiment Pipeline</p>
           <h2 id="workflow-title">From instance design to visual diagnosis.</h2>
+          <p>
+            The workflow is intentionally linear: generate a calibrated instance,
+            run a scheduler, evaluate the resulting trajectory, and inspect the
+            evidence with plots or summaries.
+          </p>
         </div>
         <div class="pipeline" aria-label="DynaSchedBench workflow">
           <div class="pipeline-step">
             <span>1</span>
             <h3>Generate</h3>
-            <p>Calibrate and export instance artifacts.</p>
+            <p>Calibrate event streams, export artifacts, and freeze the instance for reuse.</p>
           </div>
           <div class="pipeline-step">
             <span>2</span>
             <h3>Run</h3>
-            <p>Evaluate schedulers through one environment.</p>
+            <p>Execute heuristics, PDRs, evolutionary agents, or LLM policies through one environment.</p>
           </div>
           <div class="pipeline-step">
             <span>3</span>
             <h3>Evaluate</h3>
-            <p>Compute metrics and constraint checks.</p>
+            <p>Check constraints, aggregate metrics, and compare trajectories on matched inputs.</p>
           </div>
           <div class="pipeline-step">
             <span>4</span>
             <h3>Visualize</h3>
-            <p>Inspect Gantt charts, timelines, and curves.</p>
+            <p>Inspect Gantt charts, event timelines, and metric curves to explain the outcome.</p>
           </div>
         </div>
       </section>
@@ -202,6 +212,11 @@
         <div class="section-heading">
           <p class="section-kicker">Install And Run</p>
           <h2 id="getting-started-title">A compact CLI for the full benchmark loop.</h2>
+          <p>
+            The commands below mirror the release flow in the docs: install the
+            package, generate a benchmark instance, run a policy, evaluate the
+            trajectory, and turn it into a plot you can cite.
+          </p>
         </div>
         <div class="terminal-layout">
           <div class="terminal">
@@ -231,15 +246,15 @@ dsbx-vis gantt \
           <div class="tool-list">
             <article>
               <h3>dsbx-gen</h3>
-              <p>Instance generation, batch generation, MOO, hybrid calibration, and Pareto replay.</p>
+              <p>Instance generation, batch generation, MOO, hybrid calibration, and Pareto replay for calibrated inputs.</p>
             </article>
             <article>
               <h3>dsbx-agent</h3>
-              <p>Baseline, PDR, evolutionary, and LLM agent rollouts.</p>
+              <p>Baseline, PDR, evolutionary, and LLM agent rollouts with a shared environment API.</p>
             </article>
             <article>
               <h3>dsbx-eval</h3>
-              <p>Trajectory metrics, event validation, schedule checks, and debug files.</p>
+              <p>Trajectory metrics, event validation, schedule checks, and debug files for diagnosis.</p>
             </article>
             <article>
               <h3>dsbx-vis</h3>
@@ -247,7 +262,7 @@ dsbx-vis gantt \
             </article>
             <article>
               <h3>dsbx-sim</h3>
-              <p>Snapshot inspection without running a scheduling policy.</p>
+              <p>Snapshot inspection without running a scheduling policy, useful for debugging state transitions.</p>
             </article>
           </div>
         </div>
@@ -255,20 +270,62 @@ dsbx-vis gantt \
 
       <section class="section paper" aria-labelledby="paper-title">
         <div class="paper-card">
-          <div>
+          <div class="paper-main">
             <p class="section-kicker">Paper And Artifact</p>
             <h2 id="paper-title">DynaSchedBench: Calibrated Dynamic Scheduling Benchmarks and Observability Paradox in LLM-based Scheduling Agents</h2>
             <p>
-              The ICML 2026 artifact introduces SESC for calibrated event
-              streams, SSI for difficulty stratification, and a modular
-              simulation-evaluation stack for testing reactive and
-              lookahead-based scheduling policies.
+              The paper introduces SESC for calibrated event streams, SSI for
+              difficulty stratification, and a modular simulation-evaluation
+              stack for testing reactive and lookahead-based scheduling
+              policies under different observability regimes.
             </p>
+            <div class="paper-notes" aria-label="Artifact notes">
+              <article>
+                <h3>What is released</h3>
+                <p>
+                  The public package exposes the benchmark generator, simulator,
+                  evaluation helpers, visualization commands, and agent
+                  interfaces under the single Python import <code>dsbx</code>.
+                </p>
+              </article>
+              <article>
+                <h3>What to read first</h3>
+                <p>
+                  Start with the installation and CLI pages, then follow the
+                  quickstart workflow to generate an instance, run a scheduler,
+                  and inspect the resulting trajectory.
+                </p>
+              </article>
+              <article>
+                <h3>What the paper emphasizes</h3>
+                <p>
+                  The benchmark is not just a dataset. Its calibration model,
+                  observability settings, and evaluation loop are part of the
+                  experimental design.
+                </p>
+              </article>
+            </div>
           </div>
-          <div class="paper-links">
-            <a href="https://github.com/dsbx7/DynaSchedBench">Code</a>
-            <a href="https://dsbx.readthedocs.io/">Documentation</a>
-            <a href="https://pypi.org/project/dsbx/">Package</a>
+          <div class="paper-side">
+            <div class="paper-links">
+              <a href="https://github.com/dsbx7/DynaSchedBench">Code</a>
+              <a href="https://dsbx.readthedocs.io/">Documentation</a>
+              <a href="https://pypi.org/project/dsbx/">Package</a>
+            </div>
+            <div class="paper-keys" aria-label="Key release facts">
+              <div>
+                <span>Import</span>
+                <strong>dsbx</strong>
+              </div>
+              <div>
+                <span>Commands</span>
+                <strong>dsbx-gen / eval / agent / vis / sim</strong>
+              </div>
+              <div>
+                <span>Focus</span>
+                <strong>Calibration, simulation, and observability</strong>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -277,6 +334,10 @@ dsbx-vis gantt \
         <div class="section-heading">
           <p class="section-kicker">Citation</p>
           <h2 id="citation-title">Cite DynaSchedBench</h2>
+          <p>
+            Use the BibTeX below when you refer to the benchmark suite, the
+            paper, or the release artifact in your own work.
+          </p>
         </div>
         <pre class="bibtex"><code>@inproceedings{dynaschedbench2026,
   title     = {DynaSchedBench: Calibrated Dynamic Scheduling Benchmarks and Observability Paradox in LLM-based Scheduling Agents},
